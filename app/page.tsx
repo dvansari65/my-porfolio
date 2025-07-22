@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -167,7 +168,7 @@ export default function Home() {
             {/* Project Card 1 */}
             <div className= "bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center  transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
               <div className="w-full  h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                <img src="/assets/ytImage.png" alt="Project 1" className=" w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300" />
+                <Image src="/assets/ytImage.png" alt="Project 1" className="w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300 object-cover" width={800} height={400} />
               </div>
               <h4 className="text-2xl font-bold text-white mb-3">Project One</h4>
               <p className="text-white/70 text-center text-lg">A short description of your amazing project. Built with React, Node.js, and MongoDB.</p>
@@ -176,7 +177,7 @@ export default function Home() {
             {/* Project Card 2 */}
             <div className="bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
               <div className="w-full h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                <img src="/assets/ecommerce.png" alt="Project 2" className=" w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300" />
+                <Image src="/assets/ecommerce.png" alt="Project 2" className="w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300 object-cover" width={800} height={400} />
               </div>
               <h4 className="text-2xl font-bold text-white mb-3">Project Two</h4>
               <p className="text-white/70 text-center text-lg">Another awesome project. Features TypeScript, Docker, and modern deployment.</p>
@@ -185,7 +186,7 @@ export default function Home() {
             {/* Project Card 3 */}
             <div className="bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
               <div className="w-full h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                <img src="/project3.png" alt="Project 3" className="object-cover w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300" />
+                <Image src="/project3.png" alt="Project 3" className="object-cover w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300" width={800} height={400} />
               </div>
               <h4 className="text-2xl font-bold text-white mb-3">Project Three</h4>
               <p className="text-white/70 text-center text-lg">A cool project with a focus on UI/UX and performance. Built with the MERN stack.</p>
