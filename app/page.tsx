@@ -9,7 +9,7 @@ export default function Home() {
       <section className="snap-start min-h-screen flex flex-col items-center justify-center px-4 pt-12 pb-8 animate-fade-in">
         <div className="w-full max-w-3xl text-center">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-400 bg-clip-text text-transparent animate-gradient-x">
-            Hi, I&apos;m Danish
+          Hi, I&apos;m Danish
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-white/90 mb-6 drop-shadow-lg">
             MERN Stack Developer
