@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Pointer } from 'lucide-react';
 
 
 export default function Home() {
@@ -15,7 +17,7 @@ export default function Home() {
             MERN Stack Developer
           </h2>
           <p className="text-lg md:text-xl text-white/70 mb-8 max-w-xl mx-auto">
-            I build modern, scalable web applications using MongoDB, Express, React, and Node.js. Passionate about clean code, beautiful UI, and seamless user experiences.
+            I build modern, scalable web applications using MongoDB, Express, React, and Node.js. Passionate about clean code,improve backend system, and seamless user experiences.
           </p>
           <a
             href="#connect"
@@ -25,6 +27,52 @@ export default function Home() {
           </a>
         </div>
       </section>
+      <section className="snap-start min-h-screen flex flex-col items-center justify-center px-4 pt-12 pb-8 animate-fade-in">
+        <div className="w-full ">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">Projects</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-17  justify-center">
+            {/* Project Card 1 */}
+            <div className= "bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center  transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
+              <div className="w-full  h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                <Image src="/assets/ytImage.png" alt="Project 1" className=" w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300 " width={800} height={400} />
+              </div>
+              <h4 className="text-2xl font-bold text-white mb-3">YouTube clone</h4>
+              <p className="text-white/70 text-center text-lg">Implemented complex and optimized database queries. User can do watch , like, subscribe the channel and so on. </p>
+              <div className='flex items-center gap-1 mt-2 underline'>
+                <Pointer style={{transform: "rotate(90deg)"}}/>
+                <Link href="https://github.com/dvansari65/mini-youtube-" className='text-black mt-1'>Github Repo</Link>
+              </div>
+            </div>
+            <span className='col-span-1'></span>
+            {/* Project Card 2 */}
+            <div className="bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
+              <div className="w-full h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                <Image src="/assets/ecommerce.png" alt="Project 2" className="w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300 " width={800} height={400} />
+              </div>
+              <h4 className="text-2xl font-bold text-white mb-3">E-commerce Platform</h4>
+              <p className="text-white/70 text-center text-lg">Integrated Stripe payment system for seamless and secure payments</p>
+              <div className='flex items-center gap-1 mt-2 underline'>
+                <Pointer style={{transform: "rotate(90deg)"}}/>
+                <Link href="https://github.com/dvansari65/shopit-ecommerce-platform" className='text-black mt-1'>Github Repo</Link>
+              </div>
+            </div>
+            <span className='col-span-1'></span>
+            {/* Project Card 3 */}
+            <div className="bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
+              <div className="w-full h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                <Image src="/assets/Real-time-ChatApp.png" alt="Project 3" className=" w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300" width={800} height={400} />
+              </div>
+              <h4 className="text-2xl font-bold text-white mb-3">Real-Time-Chat App</h4>
+              <p className="text-white/70 text-center text-lg">Real time chat app build with best practices and written in clean , maitainable code!</p>
+              <div className='flex items-center gap-1 mt-2 underline'>
+                <Pointer style={{transform: "rotate(90deg)"}}/>
+                <Link href="https://github.com/dvansari65/real-time-chatApp" className='text-black mt-1'>Github Repo</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Home Skills Section */}
       <section className="snap-start min-h-screen flex flex-col items-center justify-center px-4 pt-12 pb-8 animate-slide-up">
@@ -127,75 +175,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Tech I Love */}
-      <section className="snap-start min-h-screen flex flex-col items-center justify-center px-4 pt-12 pb-8 animate-slide-up">
-        <div className="w-full max-w-3xl">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">Tech I Love</h3>
-          <div className="flex flex-wrap justify-center gap-6">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[120px]">
-              <span className="text-3xl">⚛️</span>
-              <span className="mt-2 font-semibold text-white">React</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[120px]">
-              <span className="text-3xl">🟢</span>
-              <span className="mt-2 font-semibold text-white">Node.js</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[120px]">
-              <span className="text-3xl">🍃</span>
-              <span className="mt-2 font-semibold text-white">MongoDB</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[120px]">
-              <span className="text-3xl">🌐</span>
-              <span className="mt-2 font-semibold text-white">Express</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[120px]">
-              <span className="text-3xl">💻</span>
-              <span className="mt-2 font-semibold text-white">Full Stack</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 flex flex-col items-center shadow-md min-w-[120px]">
-              <span className="text-3xl">🟦</span>
-              <span className="mt-2 font-semibold text-white">TypeScript</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Projects Section */}
-      <section className="snap-start min-h-screen flex flex-col items-center justify-center px-4 pt-12 pb-8 animate-fade-in">
-        <div className="w-full ">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">Projects</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-17  justify-center">
-            {/* Project Card 1 */}
-            <div className= "bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center  transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
-              <div className="w-full  h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                <Image src="/assets/ytImage.png" alt="Project 1" className="w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300 object-cover" width={800} height={400} />
-              </div>
-              <h4 className="text-2xl font-bold text-white mb-3">Project One</h4>
-              <p className="text-white/70 text-center text-lg">A short description of your amazing project. Built with React, Node.js, and MongoDB.</p>
-            </div>
-            <span className='col-span-1'></span>
-            {/* Project Card 2 */}
-            <div className="bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
-              <div className="w-full h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                <Image src="/assets/ecommerce.png" alt="Project 2" className="w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300 object-cover" width={800} height={400} />
-              </div>
-              <h4 className="text-2xl font-bold text-white mb-3">Project Two</h4>
-              <p className="text-white/70 text-center text-lg">Another awesome project. Features TypeScript, Docker, and modern deployment.</p>
-            </div>
-            <span className='col-span-1'></span>
-            {/* Project Card 3 */}
-            <div className="bg-white/10 col-span-5 backdrop-blur-md rounded-3xl shadow-2xl p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl animate-slide-up w-full min-w-[400px] min-h-[480px]">
-              <div className="w-full h-64 bg-gradient-to-tr from-blue-500 via-cyan-400 to-teal-400 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
-                <Image src="/project3.png" alt="Project 3" className="object-cover w-full h-full rounded-2xl opacity-90 hover:opacity-100 transition-opacity duration-300" width={800} height={400} />
-              </div>
-              <h4 className="text-2xl font-bold text-white mb-3">Project Three</h4>
-              <p className="text-white/70 text-center text-lg">A cool project with a focus on UI/UX and performance. Built with the MERN stack.</p>
-            </div>
-          </div>
-          <p className="text-white/50 text-center mt-8">Add your own project images to <span className="font-semibold">/public/assets/ytImage.png</span>, <span className="font-semibold">/public/project2.png</span>, <span className="font-semibold">/public/project3.png</span></p>
-        </div>
-      </section>
-
+    
       {/* About Skills & Values */}
       <section className="snap-start min-h-screen flex flex-col items-center justify-center px-4 pt-12 pb-8 animate-fade-in">
         <div className="w-full max-w-4xl">
