@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Pointer } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 
 export default function Home() {
   const mainSkills = [
@@ -17,6 +17,45 @@ export default function Home() {
     "Web3.js", "Smart Contracts",
     // Tools & Others
     "Git", "GitHub", "VS Code", "Vercel", "Docker"
+  ];
+
+  const projects = [
+    {
+      title: "Voting DApp",
+      description: "Decentralized voting application built with Solana blockchain using Anchor framework and Next.js for secure and transparent voting system.",
+      tech: ["Solana", "Anchor", "Next.js", "TypeScript"],
+      github: "https://github.com/dvansari65/voting-dapp"
+    },
+    {
+      title: "Chess DApp",
+      description: "On-chain chess game powered by Solana smart contracts with real-time gameplay and state management using Anchor and Next.js.",
+      tech: ["Solana", "Anchor", "Next.js", "Web3.js"],
+      github: "https://github.com/dvansari65/chess-dapp"
+    },
+    {
+      title: "E-Commerce Platform",
+      description: "Full-stack e-commerce application with Stripe payment integration, product management, and secure checkout system.",
+      tech: ["Next.js", "Stripe", "Prisma", "PostgreSQL"],
+      github: "https://github.com/dvansari65/ecommerce"
+    },
+    {
+      title: "Real-Time Chat App",
+      description: "Modern chat application with real-time messaging, user authentication, and seamless communication features.",
+      tech: ["Next.js", "WebSocket", "MongoDB", "Node.js"],
+      github: "https://github.com/dvansari65/chat-app"
+    },
+    {
+      title: "YouTube Clone",
+      description: "Video streaming platform clone with video upload, playback, user subscriptions, and content management features.",
+      tech: ["Next.js", "React", "MongoDB", "Express.js"],
+      github: "https://github.com/dvansari65/youtube-clone"
+    },
+    {
+      title: "Dyad Protocol Contribution",
+      description: "Contributed to Dyad Protocol, a 15k+ star open-source repository for decentralized stablecoin infrastructure.",
+      tech: ["Solidity", "Smart Contracts", "DeFi"],
+      github: "https://github.com/DyadStablecoin/contracts"
+    }
   ];
 
   return (
@@ -108,6 +147,49 @@ export default function Home() {
                   </span>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Projects Section */}
+          <div className="mt-10 w-full">
+            <h1 className="text-[20px] Roboto font-light text-slate-300 mb-6">
+              Projects
+            </h1>
+            <div className="flex flex-col gap-5">
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 
+                           border border-cyan-500/20 rounded-lg p-5
+                           hover:border-cyan-400/40 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]
+                           transition-all duration-300 backdrop-blur-sm"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-[16px] text-slate-200 font-medium">{project.title}</h3>
+                    <Link 
+                      href={project.github}
+                      target="_blank"
+                      className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
+                      <Github size={20} />
+                    </Link>
+                  </div>
+                  <p className="text-[13px] text-gray-400 mb-3 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-slate-700/50 border border-cyan-500/20 
+                                 rounded text-[11px] text-slate-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
