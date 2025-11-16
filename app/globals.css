@@ -1,35 +1,72 @@
 @import "tailwindcss";
 
-
 /* globals.css */
 
 body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    /* Animated gradient background */
-    background: linear-gradient(120deg, #0f2027, #2c5364, #1c92d2, #f2fcfe);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: #f5f6fa;
-  }
-  
-  @keyframes gradientBG {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
- .animate-logo-bounce {
- animation: logoBounce 1.8s infinite alternate cubic-bezier(0.4,0,0.2,1);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  /* Animated gradient background */
+  background: #0c0d16;
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #f5f6fa;
 }
- @keyframes logoBounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-6px) scale(1.04); } }
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-logo-bounce {
+  animation: logoBounce 1.8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes logoBounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-6px) scale(1.04);
+  }
+}
+
+.text_color {
+  color: #b0ddef;
+text-shadow: 0 0 20px rgba(96, 165, 250, 0.4),
+             0 0 40px rgba(96, 165, 250, 0.2);
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../public/assets/Roboto_Condensed/static/RobotoCondensed-Black.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+
+h2, h3 {
+  font-family: 'Roboto', sans-serif;
+}
+
+.special-text {
+  font-family: 'Roboto', sans-serif;
+}
+
+.about {
+  font-family: "Robot",'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
