@@ -37,6 +37,12 @@ export default function Home() {
 
   const projects = [
     {
+      title: "RaffleDrop",
+      description: "Decentralized voting application built with Solana blockchain using Anchor framework and Next.js for secure and transparent voting system.",
+      tech: ["Solana", "Anchor", "Next.js", "TypeScript"],
+      github: "https://github.com/dvansari65/voting-dapp"
+    },
+    {
       title: "Voting DApp",
       description: "Decentralized voting application built with Solana blockchain using Anchor framework and Next.js for secure and transparent voting system.",
       tech: ["Solana", "Anchor", "Next.js", "TypeScript"],
