@@ -79,7 +79,7 @@ export default function Home() {
         <section className="w-full flex justify-start items-center gap-5 py-3">
           <div>
             <Image
-              src="/assets/batman.jpeg"
+              src="/assets/batman.webp"
               alt="Danish Ansari"
               width={60}
               height={60}

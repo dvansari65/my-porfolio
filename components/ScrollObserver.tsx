@@ -14,6 +14,8 @@ export function ScrollObserver() {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate-in');
+                        // Stop observing once the animation is triggered
+                        observerRef.current?.unobserve(entry.target);
                     }
                 });
             },
