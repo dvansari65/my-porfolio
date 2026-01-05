@@ -7,25 +7,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  /* Animated gradient background */
   background: #0c0d16;
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
   color: #f5f6fa;
-}
-
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 .animate-logo-bounce {
