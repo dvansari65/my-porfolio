@@ -58,17 +58,17 @@ export function FloatingBubbles() {
 
             <div
                 ref={containerRef}
-                className="fixed bottom-8 left-1/2 -translate-x-1/2 flex gap-6 z-50 bubble-container py-4"
+                className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-4 md:gap-6 z-50 bubble-container py-4 px-2 w-max max-w-full justify-center"
             >
                 {/* GitHub Bubble */}
                 <a
                     href="https://github.com/dvansari65"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bubble-link group relative w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-cyan-400/20 to-blue-500/20 backdrop-blur-md border border-cyan-400/30 hover:scale-110 transition-transform duration-500 ease-out animate-[float_3s_ease-in-out_infinite]"
+                    className="bubble-link group relative w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-cyan-400/20 to-blue-500/20 backdrop-blur-md border border-cyan-400/30 hover:scale-110 transition-transform duration-500 ease-out animate-[float_3s_ease-in-out_infinite] shrink-0"
                     style={{ animationDelay: '0s' }}
                 >
-                    <Github className="w-5 h-5 text-cyan-300 group-hover:text-cyan-100 transition-colors duration-300 relative z-10" />
+                    <Github className="w-4 h-4 md:w-5 md:h-5 text-cyan-300 group-hover:text-cyan-100 transition-colors duration-300 relative z-10" />
                     <div
                         className="bubble-glow"
                         style={{
@@ -83,10 +83,10 @@ export function FloatingBubbles() {
                     href="https://www.linkedin.com/in/danish-ansari-347a06299/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bubble-link group relative w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-blue-600/20 backdrop-blur-md border border-blue-400/30 hover:scale-110 transition-transform duration-500 ease-out animate-[float_3s_ease-in-out_infinite]"
+                    className="bubble-link group relative w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-400/20 to-blue-600/20 backdrop-blur-md border border-blue-400/30 hover:scale-110 transition-transform duration-500 ease-out animate-[float_3s_ease-in-out_infinite] shrink-0"
                     style={{ animationDelay: '1s' }}
                 >
-                    <Linkedin className="w-5 h-5 text-blue-300 group-hover:text-blue-100 transition-colors duration-300 relative z-10" />
+                    <Linkedin className="w-4 h-4 md:w-5 md:h-5 text-blue-300 group-hover:text-blue-100 transition-colors duration-300 relative z-10" />
                     <div
                         className="bubble-glow"
                         style={{
@@ -101,10 +101,10 @@ export function FloatingBubbles() {
                     href="https://twitter.com/danishansari65"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bubble-link group relative w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-sky-400/20 to-blue-500/20 backdrop-blur-md border border-sky-400/30 hover:scale-110 transition-transform duration-500 ease-out animate-[float_3s_ease-in-out_infinite]"
+                    className="bubble-link group relative w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-sky-400/20 to-blue-500/20 backdrop-blur-md border border-sky-400/30 hover:scale-110 transition-transform duration-500 ease-out animate-[float_3s_ease-in-out_infinite] shrink-0"
                     style={{ animationDelay: '2s' }}
                 >
-                    <Twitter className="w-5 h-5 text-sky-300 group-hover:text-sky-100 transition-colors duration-300 relative z-10" />
+                    <Twitter className="w-4 h-4 md:w-5 md:h-5 text-sky-300 group-hover:text-sky-100 transition-colors duration-300 relative z-10" />
                     <div
                         className="bubble-glow"
                         style={{

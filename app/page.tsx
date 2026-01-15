@@ -6,14 +6,7 @@ import { ScrollObserver } from "@/components/ScrollObserver";
 
 export default function Home() {
   const mainSkills = [
-    "TypeScript", "JavaScript", "Rust", "Next.js", "React", "Solana", "Anchor"
-  ];
-
-  const skills = [
-    "Tailwind CSS", "HTML5", "CSS3",
-    "Node.js", "Prisma ORM", "PostgreSQL", "MongoDB", "Express.js",
-    "Web3.js", "Smart Contracts",
-    "Git", "GitHub", "VS Code", "Vercel", "Docker"
+    "TypeScript", "JavaScript", "Rust", "Next.js", "React", "Node.js", "Anchor","Docker"
   ];
 
   const projects = [
@@ -24,10 +17,10 @@ export default function Home() {
       github: "https://github.com/dvansari65/RaffleDrop"
     },
     {
-      title: "Voting DApp",
-      description: "Decentralized voting application built with Solana blockchain using Anchor framework and Next.js for secure and transparent voting system.",
-      tech: ["Solana", "Anchor", "Next.js", "TypeScript"],
-      github: "https://github.com/dvansari65/voting-dapp"
+      title: "Decentralised Orderbook",
+      description: "A modular Solana DEX with an on-chain orderbook, built with Anchor and Next.js, featuring real-time order matching, event queue, and off-chain indexing for high-performance trading.",
+      tech: ["Rust", "Anchor", "Next.js", "TypeScript", "Solana", "Switchboard"],
+      github: "https://github.com/dvansari65/dex_orderbook"
     },
     {
       title: "Chess DApp",
@@ -36,23 +29,18 @@ export default function Home() {
       github: "https://github.com/dvansari65/chess-dapp"
     },
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce application with Stripe payment integration, product management, and secure checkout system.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js"],
-      github: "https://github.com/dvansari65/ecommerce"
+      title: "Crashed",
+      description: "A modern, real-time crash-style gambling game built on Solana with provably fair gaming mechanics. Time your exit before the multiplier crashes!",
+      tech: ["Solana", "Anchor", "Next.js", "Web3.js"],
+      github: "https://github.com/dvansari65/crashed"
     },
     {
-      title: "Real-Time Chat App",
-      description: "Modern chat application with real-time messaging, user authentication, and seamless communication features.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js"],
-      github: "https://github.com/dvansari65/chat-app"
+      title: "CancelCourt",
+      description: "A playful, on-chain protocol where users anonymously submit cases (trends, behaviors, influencers, brands) for the community to vote on—should it be canceled or redeemed? Built on Solana for Gen Z's love of social commentary, irony, and collective action.",
+      tech: ["Solana", "Anchor", "Next.js", "Web3.js"],
+      github: "https://github.com/dvansari65/cencelcourt"
     },
-    {
-      title: "YouTube Clone",
-      description: "Video streaming platform clone with video upload, playback, user subscriptions, and content management features.",
-      tech: ["MongoDB", "Express.js", "React", "Node.js"],
-      github: "https://github.com/dvansari65/youtube-clone"
-    }
+
   ];
 
   const contributions = [
@@ -75,7 +63,7 @@ export default function Home() {
       <div className="absolute right-[calc(50%-400px)] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent"></div>
 
       {/* Main Content Container */}
-      <div className="max-w-3xl w-full flex flex-col items-start px-8 py-8 pb-32">
+      <div className="max-w-3xl w-full flex flex-col items-start px-4 md:px-8 py-8 pb-24 md:pb-32 overflow-hidden">
         <section className="w-full flex justify-start items-center gap-5 py-3">
           <div>
             <Image
@@ -87,7 +75,7 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col">
-            <h1 className="text-white text-2xl font-light">Danish Ansari</h1>
+            <h1 className="text-white text-xl md:text-2xl font-light">Danish Ansari</h1>
             <span className="text-gray-400 text-sm">
               Blockchain Developer & Full Stack Developer
             </span>
@@ -107,7 +95,7 @@ export default function Home() {
 
         <section className="w-full flex flex-col items-start pb-10">
           <div className="mt-10 flex flex-col gap-3 fade-in-section">
-            <h1 className="text-xl font-light text-slate-300">
+            <h1 className="text-lg md:text-xl font-light text-slate-300">
               About
             </h1>
             <span className="text-gray-400 text-sm">
@@ -122,7 +110,7 @@ export default function Home() {
           </div>
 
           <div className="mt-10 w-full fade-in-section">
-            <h1 className="text-xl font-light text-slate-300 mb-6">
+            <h1 className="text-lg md:text-xl font-light text-slate-300 mb-6">
               Skills
             </h1>
 
@@ -140,26 +128,11 @@ export default function Home() {
                 ))}
               </div>
             </div>
-
-            {/* Other Skills */}
-            <div>
-              <h2 className="text-sm text-gray-400 mb-3 font-light">Other Technologies</h2>
-              <div className="flex flex-wrap gap-3">
-                {skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-cyan-500/20 rounded-lg text-xs text-slate-200 hover:border-cyan-400/40 hover:shadow-[0_0_15px_rgba(34,211,238,0.15)] transition-all duration-300 cursor-default backdrop-blur-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Projects Section */}
           <div className="mt-10 w-full fade-in-section">
-            <h1 className="text-xl font-light text-slate-300 mb-6">
+            <h1 className="text-lg md:text-xl font-light text-slate-300 mb-6">
               Projects
             </h1>
             <div className="flex flex-col gap-5">
@@ -200,7 +173,7 @@ export default function Home() {
 
           {/* Experience & Contributions Section */}
           <div className="mt-10 w-full mb-10 fade-in-section">
-            <h1 className="text-xl font-light text-slate-300 mb-6">
+            <h1 className="text-lg md:text-xl font-light text-slate-300 mb-6">
               Experience & Contributions
             </h1>
             <div className="flex flex-col gap-5">
