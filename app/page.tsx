@@ -6,7 +6,7 @@ import { ScrollObserver } from "@/components/ScrollObserver";
 
 export default function Home() {
   const mainSkills = [
-    "TypeScript", "JavaScript", "Rust", "Next.js", "React", "Node.js", "Anchor","Docker"
+    "TypeScript", "JavaScript", "Rust", "Next.js", "React", "Node.js", "Anchor", "Docker"
   ];
 
   const projects = [
@@ -45,10 +45,10 @@ export default function Home() {
 
   const contributions = [
     {
-      title: "Dyad Protocol",
-      description: "Contributed to Dyad Protocol, a 15k+ star open-source repository for decentralized stablecoin infrastructure.",
-      tech: ["Solidity", "Smart Contracts", "DeFi"],
-      github: "https://github.com/DyadStablecoin/contracts"
+      title: "txtx/Surfpool",
+      description: "Contributed to txtx Surfpool which is solana local developement",
+      fix: "Improved error handling",
+      github: "https://github.com/txtx/surfpool/pull/489"
     }
   ];
 
@@ -179,34 +179,78 @@ export default function Home() {
             <div className="flex flex-col gap-5">
               {contributions.map((contribution, index) => (
                 <div
-                  key={index}
-                  className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-cyan-500/20 rounded-lg p-5 hover:border-cyan-400/40 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 backdrop-blur-sm fade-in-section"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-base text-slate-200 font-medium">{contribution.title}</h3>
-                    <a
-                      href={contribution.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                    >
-                      <Github size={20} />
-                    </a>
+                key={index}
+                className="group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-cyan-500/20 rounded-lg p-5 hover:border-cyan-400/40 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 backdrop-blur-sm fade-in-section overflow-hidden"
+              >
+                {/* Subtle animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-cyan-500/0 opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-cyan-400/10 rounded-tr-lg" />
+                
+                {/* Glow effect on hover */}
+                <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-500/0 via-cyan-400/5 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="flex items-start gap-3 mb-3">
+                    {/* Animated indicator with pulse effect */}
+                    <div className="relative mt-1 flex-shrink-0">
+                      <div className="absolute w-3 h-3 rounded-full bg-cyan-400/20 animate-ping" />
+                      <div className="w-2 h-2 rounded-full bg-cyan-400/60" />
+                    </div>
+                    
+                    <p className="text-sm text-gray-300 leading-relaxed tracking-wide group-hover:text-gray-200 transition-colors duration-300">
+                      {contribution.description}
+                    </p>
                   </div>
-                  <p className="text-xs text-gray-400 mb-3 leading-relaxed">
-                    {contribution.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {contribution.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-slate-700/50 border border-cyan-500/20 rounded text-xs text-slate-300"
-                      >
-                        {tech}
+                  
+                  <div className="ml-5 space-y-2">
+                    <div className="flex items-start gap-2">
+                      {/* Tag with improved typography */}
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-cyan-500/10 text-cyan-400/90 border border-cyan-500/15 tracking-wide">
+                        Fix
                       </span>
-                    ))}
+                      <span className="text-xs text-gray-400 leading-relaxed tracking-wide group-hover:text-gray-300 transition-colors duration-300">
+                        {contribution.fix}
+                      </span>
+                    </div>
+                    
+                    {/* Enhanced PR link with icon */}
+                    <div className="flex items-center gap-2 pt-1">
+                      <svg 
+                        className="w-3 h-3 text-cyan-400/70" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      <span className="text-xs text-cyan-400/70 font-medium tracking-wide">PR:</span>
+                      <a 
+                        className="relative text-xs text-green-300 hover:text-green-200 transition-colors duration-300 group/link"
+                        href={contribution.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {/* Animated underline */}
+                        <span className="relative">
+                          {contribution.github.split('/').slice(-1)[0]}
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-green-400/60 group-hover/link:w-full transition-all duration-300" />
+                        </span>
+                        {/* External link indicator */}
+                        <svg 
+                          className="inline-block w-3 h-3 ml-1.5 opacity-0 -translate-x-1 group-hover/link:opacity-70 group-hover/link:translate-x-0 transition-all duration-300" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </div>
+              </div>
               ))}
             </div>
           </div>
