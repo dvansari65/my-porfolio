@@ -2,13 +2,38 @@
 
 /* globals.css */
 
+html,
 body {
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: 0;
-  padding: 0;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  background: #0c0d16;
-  color: #f5f6fa;
+}
+:root {
+  --color-primary: #F4F3EF;    /* Main text / headings */
+  --color-secondary: #C9CEC9;  /* Sub text / paragraphs */
+  --color-accent: #E6D3A3;     /* Links / highlights / hover */
+}
+
+body {
+  background-image: url("/assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;       /* ⬅ fills entire screen */
+  background-attachment: fixed; /* ⬅ stays in place */
+
+  color: var(--color-primary);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
 }
 
 .animate-logo-bounce {
@@ -52,4 +77,55 @@ h2, h3 {
 
 .about {
   font-family: "Robot",'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Outfit */
+.font-outfit {
+  font-family: "Outfit", sans-serif;
+}
+
+/* Roboto Condensed */
+.font-roboto {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+/* Winky Rough */
+.font-winky {
+  font-family: "Winky Rough", sans-serif;
+}
+
+/* SN Pro */
+.font-sn {
+  font-family: "SN Pro", sans-serif;
+}
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInStable {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.animate-fade-in-stable {
+  opacity: 0;
+  animation: fadeInStable 0.7s ease-out forwards;
+  animation-delay: 0.3s;
 }

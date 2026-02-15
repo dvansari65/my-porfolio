@@ -1,46 +1,52 @@
 "use client"
 import Image from "next/image";
-import { Download, Github, Mail, Phone, MapPin } from "lucide-react";
+import { Download, Github, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
 import { ScrollObserver } from "@/components/ScrollObserver";
+import { title } from "process";
+import Link from "next/link";
 
 export default function Home() {
-  const mainSkills = [
-    "TypeScript", "JavaScript", "Rust", "Next.js", "React", "Node.js", "Anchor", "Docker"
+  const coreSkills = [
+    "TypeScript", "Rust", "React", "Next.js", "Anchor", "Solana", "Node.js", "Docker"
   ];
 
   const projects = [
     {
       title: "RaffleDrop",
-      description: "LuckyBid is a decentralized raffle marketplace where sellers list items and buyers enter with small fees for a chance to win. Once enough players join, Switchboard randomness picks a winner — the seller gets paid, and one lucky buyer gets the product at a fraction of the price.",
-      tech: ["Rust", "Anchor", "Next.js", "TypeScript", "Solana", "Switchboard"],
-      github: "https://github.com/dvansari65/RaffleDrop"
+      description: "RaffleDrop is a decentralized raffle marketplace where sellers list items and buyers enter with small fees for a chance to win. Once enough players join, Switchboard randomness picks a winner — the seller gets paid, and one lucky buyer gets the product at a fraction of the price.",
+      github: "https://github.com/dvansari65/RaffleDrop",
+      image: "/assets/raffledrop.png",
+      tags: ["Solana", "Anchor", "Next.js"]
     },
     {
       title: "Decentralised Orderbook",
       description: "A modular Solana DEX with an on-chain orderbook, built with Anchor and Next.js, featuring real-time order matching, event queue, and off-chain indexing for high-performance trading.",
-      tech: ["Rust", "Anchor", "Next.js", "TypeScript", "Solana", "Switchboard"],
-      github: "https://github.com/dvansari65/dex_orderbook"
+      github: "https://github.com/dvansari65/dex_orderbook",
+      image: "",
+      tags: ["Solana", "Anchor", "TypeScript"]
     },
     {
       title: "Chess DApp",
       description: "On-chain chess game powered by Solana smart contracts with real-time gameplay and state management using Anchor and Next.js.",
-      tech: ["Solana", "Anchor", "Next.js", "Web3.js"],
-      github: "https://github.com/dvansari65/chess-dapp"
+      github: "https://github.com/dvansari65/chess-dapp",
+      image: "",
+      tags: ["Solana", "Rust", "React"]
     },
     {
       title: "Crashed",
       description: "A modern, real-time crash-style gambling game built on Solana with provably fair gaming mechanics. Time your exit before the multiplier crashes!",
-      tech: ["Solana", "Anchor", "Next.js", "Web3.js"],
-      github: "https://github.com/dvansari65/crashed"
+      github: "https://github.com/dvansari65/crashed",
+      image: "",
+      tags: ["Solana", "Anchor", "Next.js"]
     },
     {
       title: "CancelCourt",
       description: "A playful, on-chain protocol where users anonymously submit cases (trends, behaviors, influencers, brands) for the community to vote on—should it be canceled or redeemed? Built on Solana for Gen Z's love of social commentary, irony, and collective action.",
-      tech: ["Solana", "Anchor", "Next.js", "Web3.js"],
-      github: "https://github.com/dvansari65/cencelcourt"
+      github: "https://github.com/dvansari65/cencelcourt",
+      image: "",
+      tags: ["Solana", "Anchor", "React"]
     },
-
   ];
 
   const contributions = [
@@ -53,262 +59,218 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-full min-h-screen flex justify-center relative bg-slate-950">
-      <ScrollObserver />
-
-      {/* Left Border Line */}
-      <div className="absolute left-[calc(50%-400px)] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent"></div>
-
-      {/* Right Border Line */}
-      <div className="absolute right-[calc(50%-400px)] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent"></div>
-
-      {/* Main Content Container */}
-      <div className="max-w-3xl w-full flex flex-col items-start px-4 md:px-8 py-8 pb-24 md:pb-32 overflow-hidden">
-        <section className="w-full flex justify-start items-center gap-5 py-3">
-          <div>
+    <div className="w-full h-screen p-5">
+      <div className="flex flex-col items-center overflow-y gap-5">
+        <section className="w-full max-w-3xl p-2 flex justify-start">
+          <div className="flex items-start gap-4">
+            {/* Avatar (never moves) */}
             <Image
-              src="/assets/batman.webp"
-              alt="Danish Ansari"
-              width={60}
-              height={60}
-              className="rounded-full"
+              className="rounded-[3px] shrink-0"
+              src="/assets/luffy.jpg"
+              width={80}
+              height={80}
+              alt="avatar"
             />
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-white text-xl md:text-2xl font-light">Danish Ansari</h1>
-            <span className="text-gray-400 text-sm">
-              Blockchain Developer & Full Stack Developer
-            </span>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="text-xs text-green-400">Hire me</span>
-              <a
-                href="/assets/danish.pdf"
-                download
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/40 rounded-md text-xs text-cyan-300 hover:text-cyan-100 hover:border-cyan-300/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300 backdrop-blur-sm"
-              >
-                <Download size={14} />
-                <span>Download CV</span>
-              </a>
+
+            {/* Text block */}
+            <div className="flex flex-col justify-start min-h-[64px]">
+              <span className="text-4xl font-winky animate-fade-up text-secondary">
+                Danish Ansari
+              </span>
+
+              {/* Reserved height prevents reflow */}
+              <div className="h-[32px]">
+                <div className="text-primary font-winky text-2xl animate-fade-in-stable">
+                  Solana Developer
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full flex flex-col items-start pb-10">
-          <div className="mt-10 flex flex-col gap-3 fade-in-section">
-            <h1 className="text-lg md:text-xl font-light text-slate-300">
-              About
-            </h1>
-            <span className="text-gray-400 text-sm">
-              {`[ learn >> build >> solve ]`}
-            </span>
-          </div>
-          <div className="mt-4 text-sm text-gray-400 leading-relaxed fade-in-section">
-            I am a Full Stack and Blockchain developer. I like to do tough things and this helps me
-            build complex and robust applications. I mostly prefer Next.js, TypeScript and Prisma ORM
-            stacks in development, and while building Solana dApps I use Anchor and Next.js. I started my
-            coding journey on March 14, 2024 and have built multiple real world projects.
+        {/* Skills Section */}
+        <section className="w-full max-w-3xl animate-fade-up mt-6">
+          <div className="mb-8">
+            <h2 className="text-3xl font-medium text-primary mb-3 pb-3 border-b border-secondary/30">
+              Core Skills
+            </h2>
+            <p className="text-secondary text-lg">
+              Specialized in modern web3 development with expertise across the full stack
+            </p>
           </div>
 
-          <div className="mt-10 w-full fade-in-section">
-            <h1 className="text-lg md:text-xl font-light text-slate-300 mb-6">
-              Skills
-            </h1>
-
-            {/* Main Languages & Frameworks */}
-            <div className="mb-6">
-              <h2 className="text-sm text-gray-400 mb-3 font-light">Main Languages & Frameworks</h2>
-              <div className="flex flex-wrap gap-3">
-                {mainSkills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="px-5 py-2.5 bg-gradient-to-br from-cyan-900/30 to-cyan-950/40 border border-cyan-400/40 rounded-lg text-sm text-slate-200 hover:border-cyan-300/60 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all duration-300 cursor-default backdrop-blur-sm"
-                  >
+          {/* Core Skills Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {coreSkills.map((skill, index) => (
+              <div
+                key={skill}
+                className="group relative p-4 border border-secondary/20 rounded-lg 
+                 bg-gradient-to-br from-secondary/5 to-transparent
+                 hover:border-accent/30 hover:from-secondary/10 
+                 transition-all duration-300 cursor-pointer
+                 hover:shadow-xl hover:shadow-accent/5 
+                 hover:scale-[1.02] hover:-translate-y-0.5"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="text-center">
+                  <div className="text-primary text-xl font-medium mb-1">
                     {skill}
-                  </span>
-                ))}
+                  </div>
+                  <div className="h-1 w-8 bg-accent/50 mx-auto rounded-full 
+                       group-hover:w-12 transition-all duration-300"></div>
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section className="w-full max-w-3xl animate-fade-up mt-8">
+          <div className="mb-8">
+            <h2 className="text-3xl font-medium text-primary mb-3 pb-3 border-b border-secondary/30">
+              Featured Projects
+            </h2>
+            <p className="text-secondary text-lg">
+              Building the future of decentralized applications on Solana
+            </p>
           </div>
 
-          {/* Projects Section */}
-          <div className="mt-10 w-full fade-in-section">
-            <h1 className="text-lg md:text-xl font-light text-slate-300 mb-6">
-              Projects
-            </h1>
-            <div className="flex flex-col gap-5">
-              {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-cyan-500/20 rounded-lg p-5 hover:border-cyan-400/40 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 backdrop-blur-sm fade-in-section"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-base text-slate-200 font-medium">{project.title}</h3>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                    >
-                      <Github size={20} />
-                    </a>
+          <div className="grid grid-cols-1 gap-5">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="group relative border border-secondary/20 rounded-lg overflow-hidden
+                 bg-gradient-to-br from-secondary/5 to-transparent
+                 hover:border-accent/30 hover:from-secondary/10
+                 transition-all duration-300
+                 hover:shadow-xl hover:shadow-accent/5
+                 hover:scale-[1.01] hover:-translate-y-0.5"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex flex-col sm:flex-row gap-4 p-5">
+                  {/* Project Image */}
+                  <div className="relative w-full sm:w-40 h-40 shrink-0 rounded-md overflow-hidden 
+                       border border-secondary/10 bg-secondary/5">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent 
+                         opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <p className="text-xs text-gray-400 mb-3 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-slate-700/50 border border-cyan-500/20 rounded text-xs text-slate-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+
+                  {/* Project Content */}
+                  <div className="flex-1 flex flex-col justify-between min-h-[140px]">
+                    <div>
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <h3 className="text-xl font-medium text-primary group-hover:text-accent 
+                             transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <Link
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 p-2 rounded-md border border-secondary/20 
+                               hover:border-accent/50 hover:bg-accent/5
+                               transition-all duration-200 group/icon"
+                          aria-label={`View ${project.title} on GitHub`}
+                        >
+                          <Github className="w-4 h-4 text-secondary group-hover/icon:text-accent 
+                                 transition-colors" />
+                        </Link>
+                      </div>
+                      <p className="text-secondary/80 text-sm leading-relaxed line-clamp-3">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {/* Tech Stack Tags */}
+                    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-secondary/10">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="px-2 py-0.5 text-xs rounded-full 
+                                 bg-secondary/10 text-secondary 
+                                 border border-secondary/20
+                                 group-hover:border-accent/30 group-hover:text-accent
+                                 transition-all duration-300"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
+
+                {/* Subtle accent line on hover */}
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r 
+                     from-accent/0 via-accent to-accent/0 
+                     group-hover:w-full transition-all duration-500"></div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Contributions Section */}
+        <section className="w-full max-w-3xl animate-fade-up mt-8 mb-12">
+          <div className="mb-8">
+            <h2 className="text-3xl font-medium text-primary mb-3 pb-3 border-b border-secondary/30">
+              Open Source Contributions
+            </h2>
+            <p className="text-secondary text-lg">
+              Contributing to the Solana ecosystem
+            </p>
           </div>
 
-          {/* Experience & Contributions Section */}
-          <div className="mt-10 w-full mb-10 fade-in-section">
-            <h1 className="text-lg md:text-xl font-light text-slate-300 mb-6">
-              Experience & Contributions
-            </h1>
-            <div className="flex flex-col gap-5">
-              {contributions.map((contribution, index) => (
-                <div
+          <div className="grid grid-cols-1 gap-4">
+            {contributions.map((contribution, index) => (
+              <div
                 key={index}
-                className="group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-cyan-500/20 rounded-lg p-5 hover:border-cyan-400/40 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 backdrop-blur-sm fade-in-section overflow-hidden"
+                className="group relative border border-secondary/20 rounded-lg 
+                 bg-gradient-to-br from-secondary/5 to-transparent
+                 hover:border-accent/30 hover:from-secondary/10
+                 transition-all duration-300
+                 hover:shadow-lg hover:shadow-accent/5
+                 p-5"
               >
-                {/* Subtle animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-cyan-500/0 opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
-                
-                {/* Corner accent */}
-                <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-cyan-400/10 rounded-tr-lg" />
-                
-                {/* Glow effect on hover */}
-                <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-500/0 via-cyan-400/5 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="flex items-start gap-3 mb-3">
-                    {/* Animated indicator with pulse effect */}
-                    <div className="relative mt-1 flex-shrink-0">
-                      <div className="absolute w-3 h-3 rounded-full bg-cyan-400/20 animate-ping" />
-                      <div className="w-2 h-2 rounded-full bg-cyan-400/60" />
-                    </div>
-                    
-                    <p className="text-sm text-gray-300 leading-relaxed tracking-wide group-hover:text-gray-200 transition-colors duration-300">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-medium text-primary group-hover:text-accent 
+                         transition-colors duration-300 mb-1">
+                      {contribution.title}
+                    </h3>
+                    <p className="text-secondary/80 text-sm mb-2">
                       {contribution.description}
                     </p>
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs 
+                         rounded-full bg-accent/10 text-accent border border-accent/20">
+                      <ExternalLink className="w-3 h-3" />
+                      {contribution.fix}
+                    </span>
                   </div>
-                  
-                  <div className="ml-5 space-y-2">
-                    <div className="flex items-start gap-2">
-                      {/* Tag with improved typography */}
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-cyan-500/10 text-cyan-400/90 border border-cyan-500/15 tracking-wide">
-                        Fix
-                      </span>
-                      <span className="text-xs text-gray-400 leading-relaxed tracking-wide group-hover:text-gray-300 transition-colors duration-300">
-                        {contribution.fix}
-                      </span>
-                    </div>
-                    
-                    {/* Enhanced PR link with icon */}
-                    <div className="flex items-center gap-2 pt-1">
-                      <svg 
-                        className="w-3 h-3 text-cyan-400/70" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      <span className="text-xs text-cyan-400/70 font-medium tracking-wide">PR:</span>
-                      <a 
-                        className="relative text-xs text-green-300 hover:text-green-200 transition-colors duration-300 group/link"
-                        href={contribution.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {/* Animated underline */}
-                        <span className="relative">
-                          {contribution.github.split('/').slice(-1)[0]}
-                          <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-green-400/60 group-hover/link:w-full transition-all duration-300" />
-                        </span>
-                        {/* External link indicator */}
-                        <svg 
-                          className="inline-block w-3 h-3 ml-1.5 opacity-0 -translate-x-1 group-hover/link:opacity-70 group-hover/link:translate-x-0 transition-all duration-300" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
+                  <Link
+                    href={contribution.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 p-2 rounded-md border border-secondary/20 
+                         hover:border-accent/50 hover:bg-accent/5
+                         transition-all duration-200 group/icon"
+                    aria-label={`View ${contribution.title} contribution`}
+                  >
+                    <Github className="w-4 h-4 text-secondary group-hover/icon:text-accent 
+                           transition-colors" />
+                  </Link>
                 </div>
               </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact Section */}
-          <div className="mt-10 w-full mb-10 fade-in-section">
-            <h1 className="text-xl font-light text-slate-300 mb-6">
-              Get In Touch
-            </h1>
-            <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 border border-cyan-500/20 rounded-lg p-6 backdrop-blur-sm">
-              <p className="text-sm text-gray-400 mb-6 leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!
-              </p>
-              <div className="flex flex-col gap-4">
-                <a
-                  href="mailto:danishansari@example.com"
-                  className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center group-hover:border-cyan-400/60 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
-                    <Mail size={18} className="text-cyan-400" />
-                  </div>
-                  <span>dvansari360@example.com</span>
-                </a>
-                <a
-                  href="tel:+911234567890"
-                  className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center group-hover:border-cyan-400/60 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
-                    <Phone size={18} className="text-cyan-400" />
-                  </div>
-                  <span>+91 9146109114</span>
-                </a>
-                <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center">
-                    <MapPin size={18} className="text-cyan-400" />
-                  </div>
-                  <span>Pune, Maharashtra, India</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       </div>
-
-      <FloatingBubbles />
-
-      <style jsx>{`
-        .fade-in-section {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-section.animate-in {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
     </div>
   );
 }
