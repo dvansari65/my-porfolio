@@ -37,7 +37,7 @@ export default function Home() {
       title: "Crashed",
       description: "A modern, real-time crash-style gambling game built on Solana with provably fair gaming mechanics. Time your exit before the multiplier crashes!",
       github: "https://github.com/dvansari65/crashed",
-      image: "",
+      image: "/assets/crashed.png",
       tags: ["Solana", "Anchor", "Next.js"]
     },
     {
