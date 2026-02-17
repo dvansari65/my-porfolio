@@ -404,7 +404,7 @@ export default function Home() {
                   <div className="text-sm text-secondary/60 mb-1">Email</div>
                   <div className="text-primary font-medium group-hover:text-accent 
                        transition-colors duration-300">
-                    your.email@example.com
+                    dvansari360@gmail.com
                   </div>
                 </div>
               </div>

@@ -9,13 +9,14 @@ body {
   margin: 0;
 }
 :root {
-  --color-primary: #F4F3EF;    /* Main text / headings */
-  --color-secondary: #C9CEC9;  /* Sub text / paragraphs */
+  --color-primary: #eff0f4;
+    /* Main text / headings */
+  --color-secondary: #c9cdce;  /* Sub text / paragraphs */
   --color-accent: #E6D3A3;     /* Links / highlights / hover */
 }
 
 body {
-  background-image: url("/assets/bg.jpg");
+  background-color: #576d75; /* your bg.jpg dominant color */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;       /* ⬅ fills entire screen */

@@ -21,6 +21,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/bg.jpg"
+          fetchPriority="high"
+        />
       </head>
       <body className="min-h-screen">
         {children}
