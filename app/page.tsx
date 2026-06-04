@@ -74,7 +74,7 @@ export default function Home() {
       name: "Flux",
       url: "https://github.com/dvansari65/Flux",
       github: "https://github.com/dvansari65/Flux",
-      description: "",
+      description: "A cross-chain intent-based settlement protocol. It solves the critical problems of fragmented liquidity and complex bridging UX by allowing users to simply sign their intent, while a competitive off-chain solver network handles the heavy lifting, routing, and execution for optimal pricing.",
       isFlux: true
     },
     {
@@ -117,7 +117,7 @@ export default function Home() {
           </div>
           
           <p className="text-[14px] sm:text-[16px] leading-relaxed opacity-85">
-            Specialized in Rust, distributed systems, and Web3 infrastructure. I build high-performance backend systems, intent-based DeFi protocols, and scalable payment architectures. Proven track record of contributing to core open-source repositories and pushing the boundaries of cross-chain execution and on-chain liquidity.
+            Specialized in Rust, distributed systems, and Web3 infrastructure. I build high-performance backend architectures, robust payment systems, and DeFi trading protocols. Proven track record of contributing to core open-source repositories and pushing the boundaries of cross-chain execution and on-chain liquidity.
           </p>
         </section>
 
@@ -161,7 +161,7 @@ export default function Home() {
 
             <div className="relative">
               <div className="absolute -left-[28.5px] sm:-left-[36.5px] top-1.5 w-2 h-2 rounded-full bg-[rgba(26,26,25,0.2)] ring-4 ring-[#FBFBFB]" />
-              <h3 className="text-[15px] sm:text-[16px] font-medium text-[#1A1A19]">Cohort Student <span className="opacity-60 font-normal ml-1">@Turbin3</span></h3>
+              <h3 className="text-[15px] sm:text-[16px] font-medium text-[#1A1A19]">Cohort Student <span className="opacity-60 font-normal ml-1">@SolanaTurbin3</span></h3>
               <div className="text-[13px] opacity-60 mt-0.5">March 2026</div>
               <p className="text-[14px] opacity-80 mt-2.5 leading-relaxed pr-4 sm:pr-0">
                 Part of builder, advanced SVM, and accel cohorts. Explored Solana's architecture deeply, understanding the runtime, Sealevel parallelization, and low-level mechanics of the chain.
@@ -286,6 +286,9 @@ export default function Home() {
                             <div className="p-4 sm:p-5 bg-[rgba(26,26,25,0.01)] flex flex-col gap-4">
                               {proj.isFlux ? (
                                 <div className="w-full flex flex-col gap-4">
+                                  <p className="text-[14px] sm:text-[15px] leading-relaxed opacity-80 mb-2">
+                                    {proj.description}
+                                  </p>
                                   <FluxDiagram />
                                 </div>
                               ) : (

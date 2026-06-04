@@ -35,8 +35,9 @@ export default function GithubGraph() {
         const toDate = `${selectedYear}-12-31T23:59:59Z`;
         const calendarData = await getGithubContributions("dvansari65", fromDate, toDate);
         setData(calendarData);
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch data. Make sure GITHUB_TOKEN is set.");
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : "Failed to fetch data. Make sure GITHUB_TOKEN is set.";
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }

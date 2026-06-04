@@ -107,7 +107,7 @@ for (let i = 1; i <= 8; i++) {
 }
 
 export default function FluxDiagram() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const onConnect = useCallback(
