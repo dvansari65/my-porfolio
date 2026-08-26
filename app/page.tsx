@@ -19,6 +19,7 @@ import { FaAws, FaLinkedin } from "react-icons/fa";
 import { GitPullRequest, ExternalLink, ChevronDown, Github, Mail } from "lucide-react";
 import FluxDiagram from "@/components/FluxDiagram";
 import GithubGraph from "@/components/GithubGraph";
+import CommandMenu from "@/components/CommandMenu";
 
 // A clean geometric SVG to represent Axum since there isn't a standard react-icon for it
 const AxumIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -49,6 +50,11 @@ export default function Home() {
     { name: "ava-labs/firewood #2029", url: "https://github.com/ava-labs/firewood/pull/2029" },
     { name: "solana-foundation/surfpool #586", url: "https://github.com/solana-foundation/surfpool/pull/586" },
     { name: "anza-xyz/wincode #206", url: "https://github.com/anza-xyz/wincode/pull/206" },
+    { name: "ava-labs/firewood #2082", url: "https://github.com/ava-labs/firewood/pull/2082" },
+    { name: "ava-labs/firewood #2092", url: "https://github.com/ava-labs/firewood/pull/2092" },
+    { name: "ava-labs/firewood #2095", url: "https://github.com/ava-labs/firewood/pull/2095" },
+    { name: "propeller-heads/tycho #1244", url: "https://github.com/propeller-heads/tycho/pull/1244" },
+    { name: "propeller-heads/tycho #1229", url: "https://github.com/propeller-heads/tycho/pull/1229" },
   ];
 
   const projects = [
@@ -93,7 +99,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex justify-center px-5 py-10 sm:px-6 sm:py-16 md:py-24">
-      <main className="w-full max-w-2xl flex flex-col gap-10 sm:gap-16">
+      <main className="relative w-full max-w-2xl flex flex-col gap-10 sm:gap-16">
+        <CommandMenu
+          onProjects={() => {
+            setActiveTab("projects");
+            document.querySelector("#featured-work")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
         
         <div className="flex flex-col gap-8 sm:gap-10">
           {/* Profile Section */}
@@ -195,7 +207,7 @@ export default function Home() {
         </section>
 
         {/* Featured Work Section */}
-        <section className="flex flex-col items-start w-full">
+        <section id="featured-work" className="flex scroll-mt-10 flex-col items-start w-full">
           <h2 className="text-[13px] sm:text-sm font-medium tracking-wide mb-5 sm:mb-6 opacity-70 uppercase">
             Featured Work
           </h2>
@@ -337,7 +349,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section className="flex flex-col items-start w-full pb-10">
+        <section id="connect" className="flex scroll-mt-10 flex-col items-start w-full pb-10">
           <h2 className="text-[13px] sm:text-sm font-medium tracking-wide mb-5 sm:mb-6 opacity-70 uppercase">
             Connect
           </h2>
