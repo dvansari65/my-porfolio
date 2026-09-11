@@ -1,123 +1,128 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { getGithubContributions } from '@/app/actions/github';
+import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { getGithubContributions, type ContributionCalendar } from "@/app/actions/github";
 
-type ContributionDay = {
-  contributionCount: number;
-  date: string;
-  contributionLevel: string;
-};
+const YEARS = [2026, 2025] as const;
+const USERNAME = "dvansari65";
 
-type Week = {
-  contributionDays: ContributionDay[];
-};
-
-type CalendarData = {
-  totalContributions: number;
-  weeks: Week[];
+const LEVEL_OPACITY: Record<string, number> = {
+  NONE: 0.06,
+  FIRST_QUARTILE: 0.22,
+  SECOND_QUARTILE: 0.42,
+  THIRD_QUARTILE: 0.66,
+  FOURTH_QUARTILE: 0.92,
 };
 
 export default function GithubGraph() {
-  const [selectedYear, setSelectedYear] = useState<number>(2026);
-  const [data, setData] = useState<CalendarData | null>(null);
+  const [year, setYear] = useState<number>(YEARS[0]);
+  const [data, setData] = useState<ContributionCalendar | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const years: Array<number> = [2026, 2025];
+  const [unavailable, setUnavailable] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      setError(null);
-      try {
-        const fromDate = `${selectedYear}-01-01T00:00:00Z`;
-        const toDate = `${selectedYear}-12-31T23:59:59Z`;
-        const calendarData = await getGithubContributions("dvansari65", fromDate, toDate);
-        setData(calendarData);
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : "Failed to fetch data. Make sure GITHUB_TOKEN is set.";
-        setError(errorMessage);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, [selectedYear]);
-
-  const getColor = (level: string) => {
-    switch (level) {
-      case 'FIRST_QUARTILE': return '#9be9a8';
-      case 'SECOND_QUARTILE': return '#40c463';
-      case 'THIRD_QUARTILE': return '#30a14e';
-      case 'FOURTH_QUARTILE': return '#216e39';
-      case 'NONE':
-      default: return 'rgba(26,26,25,0.05)';
-    }
-  };
+    let cancelled = false;
+    setLoading(true);
+    setUnavailable(false);
+    getGithubContributions(USERNAME, `${year}-01-01T00:00:00Z`, `${year}-12-31T23:59:59Z`)
+      .then((calendar) => {
+        if (cancelled) return;
+        setData(calendar);
+        setUnavailable(calendar === null);
+      })
+      .catch(() => {
+        if (!cancelled) setUnavailable(true);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [year]);
 
   return (
-    <div className="w-full flex flex-col items-start overflow-hidden relative gap-4">
-      {/* Year Selector */}
-      <div className="flex gap-2 flex-wrap">
-        {years.map((year) => (
-          <button
-            key={year}
-            onClick={() => setSelectedYear(year)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
-              selectedYear === year
-                ? "bg-[#1A1A19] text-[#FBFBFB]"
-                : "bg-[rgba(26,26,25,0.05)] text-[#1A1A19] hover:bg-[rgba(26,26,25,0.1)]"
-            }`}
-          >
-            {year}
-          </button>
-        ))}
-      </div>
-
-      {/* Calendar Grid */}
-      <div className="w-full flex justify-start">
-        <div className="p-4 sm:p-6 border border-[rgba(26,26,25,0.1)] rounded-xl bg-[rgba(26,26,25,0.01)] hover:border-[rgba(26,26,25,0.2)] transition-colors duration-300 w-full flex flex-col gap-4">
-          
+    <div className="flex w-full flex-col gap-5 rounded-2xl border border-line p-5 sm:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-[13.5px] text-ink-2" aria-live="polite">
           {loading ? (
-            <div className="flex items-center justify-center h-[120px] w-full text-sm opacity-50">
-              Loading contributions...
-            </div>
-          ) : error ? (
-            <div className="flex flex-col items-center justify-center h-[120px] w-full text-sm text-red-500 opacity-80 text-center gap-2">
-              <span>{error}</span>
-              <span className="text-xs opacity-70">Check your .env.local file</span>
-            </div>
+            <span className="text-ink-3">Loading activity…</span>
           ) : data ? (
             <>
-              <div className="text-xs font-medium opacity-70">
-                {data.totalContributions} contributions in {selectedYear}
-              </div>
-              
-              <div className="w-full overflow-x-auto pb-2 flex justify-start" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                <style dangerouslySetInnerHTML={{__html: `
-                  ::-webkit-scrollbar { display: none; }
-                `}} />
-                
-                <div className="flex gap-[3px] sm:gap-[4px] min-w-max">
-                  {data.weeks.map((week, i) => (
-                    <div key={i} className="flex flex-col gap-[3px] sm:gap-[4px]">
-                      {week.contributionDays.map((day) => (
-                        <div
-                          key={day.date}
-                          title={`${day.contributionCount} contributions on ${day.date}`}
-                          className="w-[9px] h-[9px] sm:w-[11px] sm:h-[11px] rounded-[2px] transition-transform hover:scale-125"
-                          style={{ backgroundColor: getColor(day.contributionLevel) }}
-                        />
-                      ))}
-                    </div>
+              <span className="font-medium text-ink">{data.totalContributions.toLocaleString("en-US")}</span> contributions in {year}
+            </>
+          ) : (
+            <span className="text-ink-3">Activity unavailable</span>
+          )}
+        </p>
+
+        <div role="tablist" aria-label="Year" className="flex gap-1 rounded-full border border-line bg-paper-2/70 p-0.5">
+          {YEARS.map((y) => (
+            <button
+              key={y}
+              role="tab"
+              aria-selected={year === y}
+              onClick={() => setYear(y)}
+              className={`rounded-full px-3 py-1 text-[12px] font-medium transition-colors duration-300 ${
+                year === y ? "bg-ink text-paper" : "text-ink-3 hover:text-ink"
+              }`}
+            >
+              {y}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {unavailable ? (
+        <div className="flex h-[112px] flex-col items-start justify-center gap-1 text-[13.5px] text-ink-2">
+          <p>The activity graph could not be loaded right now.</p>
+          <a
+            href={`https://github.com/${USERNAME}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-draw inline-flex items-center gap-1 text-ink"
+          >
+            View on GitHub <ArrowUpRight aria-hidden className="h-3.5 w-3.5" />
+          </a>
+        </div>
+      ) : (
+        <div className="scroll-quiet w-full overflow-x-auto">
+          {loading || !data ? (
+            <div className="flex h-[112px] items-end gap-[3px]">
+              {Array.from({ length: 52 }).map((_, i) => (
+                <div key={i} className="flex flex-col gap-[3px]">
+                  {Array.from({ length: 7 }).map((_, j) => (
+                    <div key={j} className="h-[11px] w-[11px] animate-pulse rounded-[3px] bg-ink/[0.05]" style={{ animationDelay: `${i * 12}ms` }} />
                   ))}
                 </div>
-              </div>
-            </>
-          ) : null}
-
+              ))}
+            </div>
+          ) : (
+            <div className="flex min-w-max gap-[3px]">
+              {data.weeks.map((week, i) => (
+                <div key={i} className="flex flex-col gap-[3px]">
+                  {week.contributionDays.map((day) => (
+                    <div
+                      key={day.date}
+                      title={`${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${day.date}`}
+                      className="h-[11px] w-[11px] rounded-[3px] transition-transform duration-200 hover:scale-[1.35]"
+                      style={{ backgroundColor: `rgb(22 22 20 / ${LEVEL_OPACITY[day.contributionLevel] ?? 0.06})` }}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
+      )}
+
+      <div className="flex items-center justify-end gap-1.5 text-[11px] text-ink-3">
+        <span>Less</span>
+        {[0.06, 0.22, 0.42, 0.66, 0.92].map((o) => (
+          <span key={o} className="h-[10px] w-[10px] rounded-[3px]" style={{ backgroundColor: `rgb(22 22 20 / ${o})` }} />
+        ))}
+        <span>More</span>
       </div>
     </div>
   );

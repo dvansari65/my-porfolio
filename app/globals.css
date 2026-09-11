@@ -1,19 +1,117 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* A warm, paper-like palette built entirely from shades of white.     */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #f7f6f2;        /* page ground */
+  --color-paper-2: #f2f1ec;      /* recessed / muted surface */
+  --color-surface: #fcfcfa;      /* cards at rest */
+  --color-surface-2: #ffffff;    /* cards on hover */
+  --color-ink: #161614;          /* primary text */
+  --color-ink-2: #4a4a46;        /* secondary text */
+  --color-ink-3: #8a8983;        /* tertiary / meta */
+  --color-line: rgb(22 22 20 / 0.08);
+  --color-line-2: rgb(22 22 20 / 0.16);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --shadow-card: 0 1px 2px rgb(22 22 20 / 0.04), 0 8px 24px -12px rgb(22 22 20 / 0.12);
+  --shadow-card-hover: 0 1px 2px rgb(22 22 20 / 0.05), 0 18px 40px -16px rgb(22 22 20 / 0.18);
+}
+
 html,
 body {
-  width: 100%;
-  height: 100%;
   margin: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
-:root {
-  --color-bg: #FBFBFB;
-  --color-text: #1A1A19;
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11", "calt", "tnum";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* A soft glow at the top keeps the large paper surface from feeling flat. */
+  background-image: radial-gradient(1200px 600px at 50% -10%, rgb(255 255 255 / 0.9), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+::selection {
+  background: rgb(22 22 20 / 0.9);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable primitives                                                 */
+/* ------------------------------------------------------------------ */
+
+/* Inline text link with an underline that draws in from the left. */
+.link-draw {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease-out-quart), color 0.2s ease;
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Small uppercase label used for section eyebrows and meta text. */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+  font-weight: 500;
+}
+
+/* Fine hairline used between list rows. */
+.hairline > * + * {
+  border-top: 1px solid var(--color-line);
+}
+
+/* Staggered entrance for sections. Pure CSS so the page is a server
+   component; framer-motion is reserved for stateful interactions. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise 0.7s var(--ease-out-quart) both;
+  animation-delay: calc(var(--rise-index, 0) * 90ms);
+}
+
+/* Hide scrollbars on horizontally scrolling strips. */
+.scroll-quiet {
+  scrollbar-width: none;
+}
+.scroll-quiet::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { animation: none; }
+  .link-draw, * { transition-duration: 0.01ms !important; }
 }
