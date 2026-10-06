@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FileText, Github, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import { profile } from "@/lib/content";
 import ExternalAction from "@/components/ui/ExternalAction";
 
@@ -39,9 +39,6 @@ export default function Hero() {
       </div>
 
       <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-        <ExternalAction href={profile.resume} strong icon={<FileText aria-hidden className="h-3.5 w-3.5" />}>
-          Résumé
-        </ExternalAction>
         <ExternalAction href={`https://github.com/${profile.handle}`} icon={<Github aria-hidden className="h-3.5 w-3.5 text-ink-3" />}>
           GitHub
         </ExternalAction>

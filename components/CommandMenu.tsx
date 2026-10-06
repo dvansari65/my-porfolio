@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, FileText, FolderKanban, GitPullRequest, Github, Mail, Search } from "lucide-react";
+import { ArrowUpRight, FolderKanban, GitPullRequest, Github, Mail, Search } from "lucide-react";
 import { profile } from "@/lib/content";
 
 const scrollTo = (selector: string) => document.querySelector(selector)?.scrollIntoView({ behavior: "smooth" });
@@ -10,7 +10,6 @@ const scrollTo = (selector: string) => document.querySelector(selector)?.scrollI
 const commands = [
   { label: "Open source", detail: "Pull requests and key changes", icon: GitPullRequest, action: () => scrollTo("#contributions") },
   { label: "Projects", detail: "Selected work", icon: FolderKanban, action: () => scrollTo("#projects") },
-  { label: "Résumé", detail: "Open PDF", icon: FileText, action: () => window.open(profile.resume, "_blank", "noopener,noreferrer") },
   { label: "GitHub", detail: `@${profile.handle}`, icon: Github, action: () => window.open(`https://github.com/${profile.handle}`, "_blank", "noopener,noreferrer") },
   { label: "Contact", detail: "Email and social links", icon: Mail, action: () => scrollTo("#connect") },
 ];

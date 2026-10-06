@@ -9,7 +9,6 @@ export const profile = {
   role: "Software Engineer",
   location: "Building for Solana and EVM",
   avatar: "/assets/luffy.jpg",
-  resume: "/assets/danish.pdf",
   email: "dvansari360@gmail.com",
   bio: [
     "I work on Rust, distributed systems and Web3 infrastructure: high-throughput backends, indexers, payment rails and DeFi trading protocols.",
@@ -38,15 +37,21 @@ export const stack = [
   "AWS",
 ] as const;
 
+export type WorkItem = {
+  title: string;
+  summary: string;
+  href: string;
+  status: "merged" | "open";
+};
+
 export type Experience = {
   role: string;
   org?: { name: string; href?: string };
   period: string;
   kind?: string;
-  amount?: string;
   summary?: string;
-  bullets?: string[];
-  proof?: { label: string; href: string };
+  /** Linked pieces of work shown under "What I built". */
+  work?: WorkItem[];
 };
 
 export const experience: Experience[] = [
@@ -56,22 +61,32 @@ export const experience: Experience[] = [
     period: "May 2026 — Present",
   },
   {
-    role: "Protocol Integration Engineer",
-    org: { name: "PropellerHeads · Tycho", href: "https://github.com/propeller-heads/tycho" },
-    period: "Jul — Sep 2026",
-    kind: "Freelance engagement",
-    amount: "$1,500",
+    role: "Contract Backend Engineer",
+    org: { name: "PropellerHeads", href: "https://github.com/propeller-heads/tycho" },
+    period: "Jul 2026 — Present",
+    kind: "Contract",
     summary:
-      "Integrated Native, an RFQ liquidity source, into the Tycho indexer end to end: orderbook indexing, TVL filtering, firm quotes, swap encoding and an on-chain executor, live on five chains.",
-    bullets: [
-      "Built the rfq:native protocol module (client, models, decoder, state) and registered it in the RFQ and swap-encoder registries.",
-      "Stream polls Native Relay's orderbook, groups bids and asks per pair, handles one- and two-sided books, and emits snapshots and removals.",
-      "TVL derived from live orderbook depth with quote-token normalisation, so markets quoted in unapproved tokens are still ranked.",
-      "Firm quotes are validated for expiry, token addresses and output amount; target, calldata and payable value are carried into the signed quote.",
-      "NativeExecutor.sol restricts execution to Router V4, Router V3 and CreditVault, validates selectors and forwards payable value for native-input swaps.",
-      "Configured for Ethereum, Base, Arbitrum, BNB Chain and Monad. 5,135 lines across 26 files, merged with test coverage for indexing, TVL, decoding and encoding.",
+      "Protocol integrations and indexer work on Tycho, PropellerHeads' open-source DEX indexing and simulation stack. Each integration covers the full path: on-chain indexing, simulation adapters, swap encoding and execution.",
+    work: [
+      {
+        title: "Native RFQ integration",
+        summary: "Orderbook indexing, TVL filtering, firm quotes, swap encoding and an on-chain executor across five chains.",
+        href: "https://github.com/propeller-heads/tycho/pull/1244",
+        status: "merged",
+      },
+      {
+        title: "Camelot V3 integration",
+        summary: "Substreams indexing, a Solidity swap adapter for simulation and execution through the existing Uniswap V3 executor.",
+        href: "https://github.com/propeller-heads/tycho/pull/1449",
+        status: "open",
+      },
+      {
+        title: "Bounded token metadata fetch",
+        summary: "Concurrent, batched and time-boxed metadata fetches with background recovery, so one slow RPC call no longer stalls a chain.",
+        href: "https://github.com/propeller-heads/tycho/pull/1430",
+        status: "open",
+      },
     ],
-    proof: { label: "Merged pull request #1244", href: "https://github.com/propeller-heads/tycho/pull/1244" },
   },
   {
     role: "Crypto Researcher",
@@ -114,6 +129,25 @@ export const contributions: ContributionGroup[] = [
     repo: "tycho",
     href: "https://github.com/propeller-heads/tycho",
     items: [
+      {
+        repo: "propeller-heads/tycho",
+        number: 1449,
+        href: "https://github.com/propeller-heads/tycho/pull/1449",
+        title: "Integrate Camelot V3 on Arbitrum One",
+        status: "open",
+        date: "Sep 2026",
+        summary:
+          "Added Camelot V3, an Algebra-based DEX on Arbitrum, as a full VM integration: Substreams indexing, a Solidity swap adapter for simulation, and execution through the existing Uniswap V3 executor. Camelot's fee is adaptive and differs per direction, computed on-chain from price history, so the integration runs the deployed pool rather than porting that logic.",
+        highlights: [
+          "Indexing: pools are discovered from the factory's Pool event. The per-pool DataStorageOperator appears in no event, so it is recovered from the call trace as the single contract the factory call creates. Code and storage for pool, operator and factory are emitted from the creation block.",
+          "Balances are tracked from both sides of ERC-20 Transfer events. Pools with an active farming incentive are exposed as state and filtered out of simulation, since they call an unindexed virtual pool.",
+          "Simulation: the adapter pays swaps in algebraSwapCallback, authenticated against the factory, and quotes by reverting inside the callback with a tagged payload. Marginal prices come from the pool's sqrt price and the fee it will charge next.",
+          "Limits walk the tick table read-only, capped at 400 steps, because quoting through the pool costs more than the 8M gas the engine grants a call.",
+          "Execution reuses the deployed Uniswap V3 executor: Camelot exposes the same swap signature and settles through the callback. The encoder emits the executor's payload with the unused fee slot zeroed.",
+          "Verified with 9 Substreams unit tests, a streamed Arbitrum block matched against chain state, 18 Foundry fork tests, and a router fork test checking exact output and the community fee split. 5,473 lines across 42 files.",
+        ],
+        stats: { additions: 5473, deletions: 24, files: 42 },
+      },
       {
         repo: "propeller-heads/tycho",
         number: 1430,
